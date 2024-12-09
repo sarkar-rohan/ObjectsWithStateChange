@@ -4,6 +4,9 @@
 We introduce a new dataset comprising 331 household objects from 21 categories undergoing diverse state changes in addition to other transformations such as pose and viewpoint changes. 
 The goal of introducing this dataset is to facilitate research in learning object representations that are invariant to state changes while also staying invariant to transformations induced by changes in viewpoint, pose, illumination, etc. for fine-grained recognition and retrieval. 
 
+<img width="1248" alt="Data_FG" src="https://github.com/user-attachments/assets/d6b56614-c68f-459e-956b-7a6301d15378">
+
+
 For each object, two sets of images are collected: 
 - StateChange dataset: Images of each object in diverse states are captured from multiple arbitrary viewpoints. Also, there are variations in pose, lighting conditions, and background. 
 - Probe dataset: Images of each object placed in an unseen state are captured from arbitrary viewpoints.
