@@ -19,7 +19,7 @@ with approximately 10 images for each object. The StateChange dataset is used fo
 
 The datasets are organized such that the images of each object identity are stored in a separate subfolder with an integer ID indicating the object-identity. 
 The mapping of object-identities to categories (also indicated by an integer ID) are also provided as a `obj2cat.npy` file. 
-The text descriptions describing the visual characteristics of the object will be released soon. 
+The text descriptions describing the visual characteristics of the objects will be released soon. 
 
 The StateChange and Probe datasets can be downloaded from [Google Drive](https://drive.google.com/drive/folders/19icj12ccxArA7vpiuk-VT8fy5g-6S9Tu?usp=sharing).
 
