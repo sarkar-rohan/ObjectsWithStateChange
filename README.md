@@ -8,7 +8,7 @@ The goal of introducing this dataset is to facilitate research in learning objec
 
 
 For each object, two sets of images are collected: 
-- StateChange dataset: Images of each object in diverse states are captured from multiple arbitrary viewpoints. Also, there are variations in pose, lighting conditions, and background. 
+- StateChange dataset: Images of each object in diverse states are captured from multiple arbitrary viewpoints. Also, there are other transformations such as variations in pose, lighting conditions, and background. 
 - Probe dataset: Images of each object placed in an unseen state are captured from arbitrary viewpoints.
 
 ![Screenshot 2024-07-18 at 12 47 37 PM](https://github.com/user-attachments/assets/40df2f97-67af-4e4e-b34c-74a6675ce990)
@@ -17,7 +17,7 @@ For each object, two sets of images are collected:
 Overall, the StateChange dataset comprises 7900 images with an average of 24 images per object, and the Probe dataset comprises 3428 images
 with approximately 10 images for each object. The StateChange dataset is used for training, while the Probe dataset comprising images of the same objects in an unseen state, is used for testing.
 
-The datasets are organized such that the multi-view images of each object identity are stored in a separate subfolder with an integer ID indicating the object-identity. 
+The datasets are organized such that the images of each object identity are stored in a separate subfolder with an integer ID indicating the object-identity. 
 The mapping of object-identities to categories (also indicated by an integer ID) are also provided as a `obj2cat.npy` file. 
 The text descriptions describing the visual characteristics of the object will be released soon. 
 
