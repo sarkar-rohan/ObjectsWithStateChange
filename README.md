@@ -1,4 +1,4 @@
-# ObjectsWithStateChange Dataset 
+# ObjectsWithStateChange (OWSC) Dataset 
 
 ## Datasets
 We introduce a new dataset comprising 331 household objects from 21 categories undergoing diverse state changes in addition to other transformations such as pose and viewpoint changes. 
