@@ -23,4 +23,13 @@ The text descriptions describing the visual characteristics of the objects will 
 
 The StateChange and Probe datasets can be downloaded from [Google Drive](https://drive.google.com/drive/folders/19icj12ccxArA7vpiuk-VT8fy5g-6S9Tu?usp=sharing).
 
-If you use the dataset, please cite our [paper](https://arxiv.org/abs/2404.06470). 
+## Citation 
+If you use the dataset in your work, please cite our [paper](https://arxiv.org/abs/2404.06470): 
+```
+@article{sarkar2024learning,
+  title={Learning State-Invariant Representations of Objects from Image Collections with State, Pose, and Viewpoint Changes},
+  author={Sarkar, Rohan and Kak, Avinash},
+  journal={arXiv preprint arXiv:2404.06470},
+  year={2024}
+}
+```
