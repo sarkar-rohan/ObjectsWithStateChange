@@ -17,7 +17,7 @@ class HyperParams():
         self.beta = 1.0 # Inter-class margin for object
         """ Set margins for Category Embedding Space """
         self.theta = 0.25 
-        self.gamma = 4.0 # Controls angular separattion between categories 
+        self.gamma = 4.0 # Controls angular separation between categories 
         # for large-margin softmax loss
         # Number of randomly sampled images/object and batch size 
         # use 8 for ObjectPI and 12 for ModelNet40 and OWSC
@@ -41,15 +41,13 @@ class HyperParams():
         self.dropout = 0.25 # Dropout for the self-attention layers 
         self.expname = expname # experiment name for saving model weights
         self.task = 'JNT' # change to JNT
-        self.lamda = 1.0 # controls weight for intra-class and inter-class separation # 2.0
-        # 1 indicates equal weightage
         self.ecc_ratio = 3.0 # Early Convergence Ratio
 
 class ConfigOWSC():
     def __init__(self, case, edim, bs, a, n_s, seed_no):
         super(ConfigOWSC, self).__init__()
         random.seed(seed_no)
-        self.root_path = "data/OWSC/" # medres images stored, may need to switch to original
+        self.root_path = "data/OWSC/" 
         self.save_path = "results/OWSC/"
         self.case = case
         self.data_dir = self.root_path
@@ -80,13 +78,13 @@ class ConfigOWSC():
             clist[x] = temp   
         self.class_list = clist
         print(clist)
-        self.LR = 0.00005 # 0.00001
+        self.LR = 0.00005 
         self.alpha = a
         self.inpChannel = 3
         self.imgDim = 224
         self.embedDim = edim
         self.vData = False
-        self.Ncomp = 3 # 3
+        self.Ncomp = 3 
         self.gal_vp = []
         self.probe_vp = []
         self.train_dataAug = transforms.Compose([ 
@@ -136,7 +134,7 @@ class ConfigOOWL():
         self.class_list = clist
         print(clist)
         
-        self.LR = 0.00001 # 0.0001
+        self.LR = 0.00001 
         self.alpha = a
         self.inpChannel = 3
         self.imgDim = 224
@@ -195,7 +193,7 @@ class ConfigMNet40():
             clist[x] = temp   
         self.class_list = clist
         print(clist)
-        self.LR = 0.00001 # 0.0001
+        self.LR = 0.00001 
         self.alpha = a
         self.inpChannel = 3
         self.imgDim = 224
