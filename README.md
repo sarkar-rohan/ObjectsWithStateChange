@@ -39,12 +39,15 @@ Download the model weights from [Google Drive](https://drive.google.com/drive/fo
 and place them in a folder named model_weights 
 
 ## Benchmarking different methods using our dataset: 
-To evaluate different methods on the eight invariant tasks proposed in the paper, please run the following commands: 
+In the paper, eight invariant recognition and retrieval tasks are proposed. These tasks are category and object-based where either a single or multiple images are used during inference. 
+ 
+To evaluate different methods on these tasks, please run the following commands: 
 For Our method: 
 ```bash
-python evaluate_OWSC.py ours model_weights/OWSC/PiRO2024/Ours_PiRO_CURRICULUM_nH1_nL2.pth 1 2
+python evaluate_OWSC.py ours model_weights/OWSC/PiRO2024/Ours_PiRO_CURRICULUM_nH1_nL2_2.pth 1 2
 ```
-<img width="653" alt="Ification Accuracy Category 89 206" src="https://github.com/user-attachments/assets/a29bc870-3e7a-4402-b92f-d142e22130d1" />
+<img width="652" alt="Ours_result" src="https://github.com/user-attachments/assets/31b1933e-a4b5-4eb8-8c2b-6bf20d2c4a2b" />
+
 
 For PiRO method:
 ```bash
@@ -76,7 +79,7 @@ python evaluate_curriculum.py OWSC model_weights/OWSC/PiRO2024/PiRO_CURRICULUM_n
 ```
 <img width="649" alt="Pasted Graphic" src="https://github.com/user-attachments/assets/5f5efd1f-3d5e-4153-b439-3b1b41dd5923" />
 
-Similarly, for comparing performance with random sampling from same category (RAND_CATG) and Curriculum Learning (CURRICULUM) on pose-invariant tasks using the other datasets, please run the following commands: 
+Similarly, for comparing performance with random sampling from same category (RAND_CATG) and Curriculum Learning (CURRICULUM) on pose-invariant tasks using the other multi-view datasets, please run the following commands: 
 
 For ObjectPI (OOWL): 
 ```bash
