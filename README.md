@@ -23,6 +23,7 @@ Please clone this repo and install the dependencies using:
 ```bash
 conda env create -f environment_owsc.yml
 ```
+### Downloading Datasets
 Download the datasets (OWSC, ObjectPI, ModelNet-40, and FG3D) from [Google Drive](https://drive.google.com/file/d/1r_WKcmkemumC79VglA8LVgUTZ9J69d9L/view?usp=drive_link)
 please unzip the data.zip file using and place the datasets in a folder named data
 ```bash
@@ -33,11 +34,11 @@ For learning, we have organized these datasets such that the multi-view images o
 The train and test splits for the above-mentioned datasets can be downloaded from the link provided above.
 The mapping of object-identities to categories is also provided as `train_o2c.npy` and `test_o2c.npy` files.
 
-## Evaluation of our trained models
+### Downloading our trained models
 Download the model weights from [Google Drive](https://drive.google.com/drive/folders/1dpzTXwZZHAQH7b0H3ovJPbKtIiggBO-K?usp=drive_link)
 and place them in a folder named model_weights 
 
-### Benchmarking different methods using our dataset: 
+## Benchmarking different methods using our dataset: 
 
 For our method: 
 ```bash
@@ -58,7 +59,7 @@ python evaluate_OWSC.py picnn model_weights/OWSC/PIE2019/PICNN_1.0_1.0_1.0_1_150
 python evaluate_OWSC.py piprx model_weights/OWSC/PIE2019/PIPRX_1.0_1.0_1.0_1_150.pth 1 1
 python evaluate_OWSC.py pitc model_weights/OWSC/PIE2019/PITC_1.0_0.2_1.0_1_150.pth 1 1
 ```
-### Ablation for our Curriculum Learning Approach: 
+## Ablation for our Curriculum Learning Approach: 
 For Random Sampling from Same Category using PiRO's architecture (with nHeads = 1, nLayers = 1)
 ```bash
 python evaluate_curriculum.py OWSC model_weights/OWSC/PiRO2024/PiRO_RAND_CATG_nH1_nL1.pth 1 1
@@ -71,7 +72,7 @@ python evaluate_curriculum.py OWSC model_weights/OWSC/PiRO2024/PiRO_CURRICULUM_n
 ```
 <img width="649" alt="Pasted Graphic" src="https://github.com/user-attachments/assets/5f5efd1f-3d5e-4153-b439-3b1b41dd5923" />
 
-Similarly, for the other datasets, please run the following commands: 
+Similarly, for comparing performance with random sampling from same category (RAND_CATG) and Curriculum Learning (CURRICULUM) using the other datasets, please run the following commands: 
 
 For ObjectPI (OOWL): 
 ```bash
@@ -89,7 +90,7 @@ python evaluate_curriculum.py FG3D model_weights/FG3D/RAND_CATG_FG3D_nH1_nL1.pth
 python evaluate_curriculum.py FG3D model_weights/FG3D/CURRICULUM_FG3D_nH1_nL1.pth 1 1 
 ```
 
-### Ablation for Architecture: 
+## Ablation for Architecture: 
 For Curriculum Learning using nHeads = 1, nLayers = 1
 ```bash
 python evaluate_OWSC.py ours model_weights/OWSC/PiRO2024/PiRO_CURRICULUM_nH1_nL1.pth 1 1
