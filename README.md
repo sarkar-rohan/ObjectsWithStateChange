@@ -30,7 +30,7 @@ please unzip the data.zip file using and place the datasets in a folder named da
 unzip data.zip
 ```
 
-For learning, we have organized these datasets such that the multi-view images of each object identity are stored in a separate subfolder with an integer ID indicating the object-identity. 
+We have organized these datasets such that the multi-view images of each object identity are stored in a separate subfolder with an integer ID indicating the object-identity. 
 The train and test splits for the above-mentioned datasets can be downloaded from the link provided above.
 The mapping of object-identities to categories is also provided as `train_o2c.npy` and `test_o2c.npy` files.
 
