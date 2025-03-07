@@ -89,6 +89,21 @@ python evaluate_curriculum.py FG3D model_weights/FG3D/RAND_CATG_FG3D_nH1_nL1.pth
 python evaluate_curriculum.py FG3D model_weights/FG3D/CURRICULUM_FG3D_nH1_nL1.pth 1 1 
 ```
 
+### Ablation for Architecture: 
+For Curriculum Learning using nHeads = 1, nLayers = 1
+```bash
+python evaluate_OWSC.py ours model_weights/OWSC/PiRO2024/PiRO_CURRICULUM_nH1_nL1.pth 1 1
+```
+<img width="649" alt="Pasted Graphic" src="https://github.com/user-attachments/assets/89859ae1-e180-4b72-ba7a-db327970ce62" />
+
+
+For Curriculum Learning using nHeads = 1, nLayers = 2
+```bash
+python evaluate_OWSC.py ours model_weights/OWSC/PiRO2024/Ours_PIRO_CURRICULUM_nH1_nL2.pth 1 2
+```
+<img width="653" alt="Ification Accuracy Category 89 206" src="https://github.com/user-attachments/assets/d6045967-e006-4ace-8f30-cf7f2aeb387b" />
+
+
 ## Citation 
 If you use the dataset in your work, please cite our [paper](https://arxiv.org/abs/2404.06470): 
 ```
