@@ -23,13 +23,13 @@ Please clone this repo and install the dependencies using:
 ```bash
 conda env create -f environment_owsc.yml
 ```
-### Downloading Datasets
+### Downloading datasets
 Download the datasets (OWSC, ObjectPI, ModelNet-40, and FG3D) from [Google Drive](https://drive.google.com/file/d/1r_WKcmkemumC79VglA8LVgUTZ9J69d9L/view?usp=drive_link)
-please unzip the data.zip file using and place the datasets in a folder named data
+
+Please unzip the data.zip file using and place the datasets in a folder named data
 ```bash
 unzip data.zip
 ```
-
 We have organized these datasets such that the multi-view images of each object identity are stored in a separate subfolder with an integer ID indicating the object-identity. 
 The train and test splits for the above-mentioned datasets can be downloaded from the link provided above.
 The mapping of object-identities to categories is also provided as `train_o2c.npy` and `test_o2c.npy` files.
@@ -39,8 +39,8 @@ Download the model weights from [Google Drive](https://drive.google.com/drive/fo
 and place them in a folder named model_weights 
 
 ## Benchmarking different methods using our dataset: 
-
-For our method: 
+To evaluate different methods on the eight invariant tasks proposed in the paper, please run the following commands: 
+For Our method: 
 ```bash
 python evaluate_OWSC.py ours model_weights/OWSC/PiRO2024/Ours_PiRO_CURRICULUM_nH1_nL2.pth 1 2
 ```
@@ -76,7 +76,7 @@ python evaluate_curriculum.py OWSC model_weights/OWSC/PiRO2024/PiRO_CURRICULUM_n
 ```
 <img width="649" alt="Pasted Graphic" src="https://github.com/user-attachments/assets/5f5efd1f-3d5e-4153-b439-3b1b41dd5923" />
 
-Similarly, for comparing performance with random sampling from same category (RAND_CATG) and Curriculum Learning (CURRICULUM) using the other datasets, please run the following commands: 
+Similarly, for comparing performance with random sampling from same category (RAND_CATG) and Curriculum Learning (CURRICULUM) on pose-invariant tasks using the other datasets, please run the following commands: 
 
 For ObjectPI (OOWL): 
 ```bash
