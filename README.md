@@ -18,7 +18,7 @@ The text descriptions describing the visual characteristics of the objects will 
 The dataset can be downloaded from [Google Drive](https://drive.google.com/drive/folders/19icj12ccxArA7vpiuk-VT8fy5g-6S9Tu?usp=sharing).
 
 ## Evaluation
-### Requirements
+### Requirements and Setup
 Please clone this repo and install the dependencies using:
 ```bash
 conda env create -f environment_owsc.yml
@@ -30,14 +30,14 @@ unzip data.zip
 ```
 
 For learning, we have organized these datasets such that the multi-view images of each object identity are stored in a separate subfolder with an integer ID indicating the object-identity. 
-The train and test splits for the above-mentioned datasets can be downloaded from [Google Drive](https://drive.google.com/file/d/1BEl7XAqYK13NGOMuahMy-hxK4oSLRc8J/view?usp=sharing) .
+The train and test splits for the above-mentioned datasets can be downloaded from the link provided above.
 The mapping of object-identities to categories is also provided as `train_o2c.npy` and `test_o2c.npy` files.
 
-### Evaluation of our trained models
+## Evaluation of our trained models
 Download the model weights from [Google Drive](https://drive.google.com/drive/folders/1dpzTXwZZHAQH7b0H3ovJPbKtIiggBO-K?usp=drive_link)
 and place them in a folder named model_weights 
 
-#### Evaluation using our dataset: 
+### Benchmarking different methods using our dataset: 
 
 For our method: 
 ```bash
@@ -58,6 +58,18 @@ python evaluate_OWSC.py picnn model_weights/OWSC/PIE2019/PICNN_1.0_1.0_1.0_1_150
 python evaluate_OWSC.py piprx model_weights/OWSC/PIE2019/PIPRX_1.0_1.0_1.0_1_150.pth 1 1
 python evaluate_OWSC.py pitc model_weights/OWSC/PIE2019/PITC_1.0_0.2_1.0_1_150.pth 1 1
 ```
+### Ablation for our Curriculum Learning Approach: 
+For Random Sampling from Same Category using PiRO's architecture (with nHeads = 1, nLayers = 1)
+```bash
+python evaluate_curriculum.py OWSC model_weights/OWSC/PiRO2024/PiRO_RAND_CATG_nH1_nL1.pth 1 1
+```
+<img width="652" alt="ification Accuracy Category 87 07701283547257 $" src="https://github.com/user-attachments/assets/fc185e73-8b4e-404a-9366-d70031cd60b6" />
+
+For Curriculum Learning using the same architecture (with nHeads = 1, nLayers = 1)
+```bash
+python evaluate_curriculum.py OWSC model_weights/OWSC/PiRO2024/PiRO_CURRICULUM_nH1_nL1.pth 1 1
+```
+<img width="649" alt="Pasted Graphic" src="https://github.com/user-attachments/assets/5f5efd1f-3d5e-4153-b439-3b1b41dd5923" />
 
 ## Citation 
 If you use the dataset in your work, please cite our [paper](https://arxiv.org/abs/2404.06470): 
