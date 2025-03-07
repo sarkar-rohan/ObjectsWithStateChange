@@ -9,7 +9,7 @@ The goal of introducing this dataset is to facilitate research in learning objec
 The OWSC dataset comprises 11328 images of 331 household objects from 21 categories, captured using smartphone cameras under various state changes from arbitrary viewpoints. 
 The dataset is split into two partitions such that the training split consists of 7900 images, with approximately 24 images per object, while the test split comprises 3428 images, with approximately 10 images per object. More details are provided in the paper: https://arxiv.org/abs/2404.06470 
 
-![DatasetSplits](https://github.com/user-attachments/assets/e07fdc75-6d08-4246-8c9e-3b81a880c9c7)
+<img width="800" alt="DataSplits" src="https://github.com/user-attachments/assets/e07fdc75-6d08-4246-8c9e-3b81a880c9c7">
 
 The datasets are organized such that the images of each object identity are stored in a separate subfolder with an integer ID indicating the object-identity. 
 The mapping of object-identities to categories (also indicated by an integer ID) are also provided as a `obj2cat.npy` file. 
