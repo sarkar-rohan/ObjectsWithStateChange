@@ -17,6 +17,48 @@ The text descriptions describing the visual characteristics of the objects will 
 
 The dataset can be downloaded from [Google Drive](https://drive.google.com/drive/folders/19icj12ccxArA7vpiuk-VT8fy5g-6S9Tu?usp=sharing).
 
+## Evaluation
+### Requirements
+Please clone this repo and install the dependencies using:
+```bash
+conda env create -f environment_owsc.yml
+```
+Download the datasets (OWSC, ObjectPI, ModelNet-40, and FG3D) from [Google Drive](https://drive.google.com/file/d/1r_WKcmkemumC79VglA8LVgUTZ9J69d9L/view?usp=drive_link)
+please unzip the data.zip file using and place the datasets in a folder named data
+```bash
+unzip data.zip
+```
+
+For learning, we have organized these datasets such that the multi-view images of each object identity are stored in a separate subfolder with an integer ID indicating the object-identity. 
+The train and test splits for the above-mentioned datasets can be downloaded from [Google Drive](https://drive.google.com/file/d/1BEl7XAqYK13NGOMuahMy-hxK4oSLRc8J/view?usp=sharing) .
+The mapping of object-identities to categories is also provided as `train_o2c.npy` and `test_o2c.npy` files.
+
+### Evaluation of our trained models
+Download the model weights from [Google Drive](https://drive.google.com/drive/folders/1dpzTXwZZHAQH7b0H3ovJPbKtIiggBO-K?usp=drive_link)
+and place them in a folder named model_weights 
+
+#### Evaluation using our dataset: 
+
+For our method: 
+```bash
+python evaluate_OWSC.py ours model_weights/OWSC/PiRO2024/Ours_PiRO_CURRICULUM_nH1_nL2.pth 1 2
+```
+<img width="653" alt="Ification Accuracy Category 89 206" src="https://github.com/user-attachments/assets/a29bc870-3e7a-4402-b92f-d142e22130d1" />
+
+For PiRO method:
+```bash
+python evaluate_OWSC.py piro model_weights/OWSC/PiRO2024/PiRO_RAND_CATG_nH1_nL1.pth 1 1
+```
+<img width="652" alt="ification Accuracy Category 87 07701283547257 $" src="https://github.com/user-attachments/assets/0f1ab731-e4c1-4bbd-b10f-f94fc34debe0" />
+
+For PI-CNN, PI-Proxy, and PI-TC methods: 
+
+```bash
+python evaluate_OWSC.py picnn model_weights/OWSC/PIE2019/PICNN_1.0_1.0_1.0_1_150.pth 1 1
+python evaluate_OWSC.py piprx model_weights/OWSC/PIE2019/PIPRX_1.0_1.0_1.0_1_150.pth 1 1
+python evaluate_OWSC.py pitc model_weights/OWSC/PIE2019/PITC_1.0_0.2_1.0_1_150.pth 1 1
+```
+
 ## Citation 
 If you use the dataset in your work, please cite our [paper](https://arxiv.org/abs/2404.06470): 
 ```
