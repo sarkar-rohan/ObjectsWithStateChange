@@ -42,7 +42,8 @@ and place them in a folder named model_weights
 In the paper, eight invariant recognition and retrieval tasks are proposed. These tasks are category and object-based where either a single or multiple images are used during inference. 
  
 To evaluate different methods on these tasks, please run the following commands: 
-For Our method: 
+
+For Our method (using curriculum learning): 
 ```bash
 python evaluate_OWSC.py ours model_weights/OWSC/PiRO2024/Ours_PiRO_CURRICULUM_nH1_nL2_2.pth 1 2
 ```
