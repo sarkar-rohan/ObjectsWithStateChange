@@ -6,30 +6,27 @@ The goal of introducing this dataset is to facilitate research in learning objec
 
 <img width="1248" alt="Data_FG" src="https://github.com/user-attachments/assets/d6b56614-c68f-459e-956b-7a6301d15378">
 
+The OWSC dataset comprises 11328 images of 331 household objects from 21 categories, captured using smartphone cameras under various state changes from arbitrary viewpoints. 
+The dataset is split into two partitions such that the training split consists of 7900 images, with approximately 24 images per object, while the test split comprises 3428 images, with approximately 10 images per object. More details are provided in the paper: https://arxiv.org/abs/2404.06470 
 
-For each object, two sets of images are collected: 
-- StateChange dataset: Images of each object in diverse states are captured from multiple arbitrary viewpoints. Also, there are other transformations such as variations in pose, lighting conditions, and background. 
-- Probe dataset: Images of each object placed in an unseen state are captured from arbitrary viewpoints.
-
-![Screenshot 2024-07-18 at 12 47 37 PM](https://github.com/user-attachments/assets/40df2f97-67af-4e4e-b34c-74a6675ce990)
-
-
-Overall, the StateChange dataset comprises 7900 images with an average of 24 images per object, and the Probe dataset comprises 3428 images
-with approximately 10 images for each object. The StateChange dataset is used for training, while the Probe dataset comprising images of the same objects in an unseen state, is used for testing.
+![DatasetSplits](https://github.com/user-attachments/assets/e07fdc75-6d08-4246-8c9e-3b81a880c9c7)
 
 The datasets are organized such that the images of each object identity are stored in a separate subfolder with an integer ID indicating the object-identity. 
 The mapping of object-identities to categories (also indicated by an integer ID) are also provided as a `obj2cat.npy` file. 
 The text descriptions describing the visual characteristics of the objects will be released soon. 
 
-The StateChange and Probe datasets can be downloaded from [Google Drive](https://drive.google.com/drive/folders/19icj12ccxArA7vpiuk-VT8fy5g-6S9Tu?usp=sharing).
+The dataset can be downloaded from [Google Drive](https://drive.google.com/drive/folders/19icj12ccxArA7vpiuk-VT8fy5g-6S9Tu?usp=sharing).
 
 ## Citation 
 If you use the dataset in your work, please cite our [paper](https://arxiv.org/abs/2404.06470): 
 ```
-@article{sarkar2024learning,
-  title={Learning State-Invariant Representations of Objects from Image Collections with State, Pose, and Viewpoint Changes},
-  author={Sarkar, Rohan and Kak, Avinash},
-  journal={arXiv preprint arXiv:2404.06470},
-  year={2024}
+@misc{sarkar2025datasetframeworklearningstateinvariant,
+      title={A Dataset and Framework for Learning State-invariant Object Representations}, 
+      author={Rohan Sarkar and Avinash Kak},
+      year={2025},
+      eprint={2404.06470},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2404.06470}, 
 }
 ```
