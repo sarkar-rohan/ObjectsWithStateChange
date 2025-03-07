@@ -71,6 +71,24 @@ python evaluate_curriculum.py OWSC model_weights/OWSC/PiRO2024/PiRO_CURRICULUM_n
 ```
 <img width="649" alt="Pasted Graphic" src="https://github.com/user-attachments/assets/5f5efd1f-3d5e-4153-b439-3b1b41dd5923" />
 
+Similarly, for the other datasets, please run the following commands: 
+
+For ObjectPI (OOWL): 
+```bash
+python evaluate_curriculum.py OOWL model_weights/ObjectPI/RAND_CATG_OOWL_nH1_nL1.pth 1 1
+python evaluate_curriculum.py OOWL model_weights/ObjectPI/CURRICULUM_OOWL_nH1_nL1.pth 1 1 
+```
+For ModelNet-40: 
+```bash
+python evaluate_curriculum.py MNet40 model_weights/ModelNet40/RAND_CATG_MNet40_nH1_nL1.pth 1 1
+python evaluate_curriculum.py MNet40 model_weights/ModelNet40/CURRICULUM_MNet40_nH1_nL1.pth 1 1 
+```
+For FG3D: 
+```bash
+python evaluate_curriculum.py FG3D model_weights/FG3D/RAND_CATG_FG3D_nH1_nL1.pth 1 1
+python evaluate_curriculum.py FG3D model_weights/FG3D/CURRICULUM_FG3D_nH1_nL1.pth 1 1 
+```
+
 ## Citation 
 If you use the dataset in your work, please cite our [paper](https://arxiv.org/abs/2404.06470): 
 ```
