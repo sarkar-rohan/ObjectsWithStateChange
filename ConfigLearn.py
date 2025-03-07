@@ -33,6 +33,10 @@ class HyperParams():
             self.batchSize = 3
             self.n_randsamp_class = 12
             self.lamda = 2.0
+        elif dataset == 'FG3D':
+            self.batchSize = 8
+            self.n_randsamp_class = 12
+            self.lamda = 2.0
         else:
             print("Dataset not specified")
         self.seed_inp = seed_no # Seed input for an experiment
@@ -215,4 +219,62 @@ class ConfigMNet40():
         self.probe_vp = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
         self.N_G = min(len(self.gal_vp),N_G_B) 
         print(self.N_G)
+class ConfigFG3D():
+    def __init__(self, case, edim, bs, a, n_s, seed_no):
+        super(ConfigFG3D, self).__init__()
+        random.seed(seed_no)
+        self.root_path = "data/FG3D/"
+        self.save_path = "results/FG3D/"
+        self.case = case
+        self.data_dir = self.root_path
+        self.gallery_dir = self.data_dir+"train/"
+        self.probe_dir = self.data_dir+"test/"
+        self.save_model_path = self.save_path+'models/FG3D_'+str(a)+'_case'+str(case)+'_b'+str(bs)+str(edim)
+        self.best_model_path = self.save_path+'models/FG3D_Best'+str(a)+'_case'+str(case)+'_b'+str(bs)+str(edim)
+        self.save_result_path = self.save_path+str(case)+'_FG3Dbenchmark.csv'    
+        self.save_plot_dist_path = self.save_path+str(case)+'_FG3Ddistance.png'
+        self.save_plot_learn_path = self.save_path+str(case)+'_FG3Dlearn.png'
         
+        self.BS = bs
+        self.Nepochs = 50
+        self.Ncls = 66
+        self.Niter = 1
+        self.Ntrain = 21575
+        self.Ntest = 3977 
+        self.o2ctrain = np.load(self.gallery_dir+'train_o2c.npy')
+        self.part_const = 2 
+        self.o2ctest = np.load(self.probe_dir+'test_o2c.npy')
+        print("O2CTrain", self.o2ctrain)
+        print("O2CTest", self.o2ctest)
+        clist = []
+        for c in range(self.Ncls):
+            clist.append([])
+        for i, x in enumerate(self.o2ctrain):
+            temp = clist[x]
+            temp.append(i)
+            clist[x] = temp   
+        self.class_list = clist
+        print(clist)
+        self.LR = 0.00005 
+        self.alpha = a
+        self.inpChannel = 3
+        self.imgDim = 224
+        self.embedDim = edim
+        self.vData = False
+        self.Ncomp = 3 
+        self.k = 200
+        self.gal_vp = []
+        self.probe_vp = []
+        self.train_dataAug = transforms.Compose([ 
+                                  transforms.Resize((self.imgDim,self.imgDim)),
+                                  transforms.RandomHorizontalFlip(),
+                                  transforms.RandomAffine(5, translate=None, scale=(0.9,1.1), shear=[-1,1,-1,1], resample=False, fillcolor=0),
+                                  transforms.ToTensor(),
+                                  transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+                                 ])
+        #=====================================================================
+        N_G_B = 12
+        self.gal_vp = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+        self.probe_vp = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+        self.N_G = min(len(self.gal_vp),N_G_B) 
+        print(self.N_G)

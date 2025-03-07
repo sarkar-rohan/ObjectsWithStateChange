@@ -118,6 +118,8 @@ class loadDataset(Dataset):
                 data_path = self.datadir+str(index+1)+"/"+str(j)+".jpg"
             elif self.dataset == "MNet40":
                 data_path = self.datadir+str(index+1)+"/"+str(j).zfill(3)+".jpg"
+            elif self.dataset == "FG3D":
+                data_path = self.datadir+str(index+1)+"/"+str(j).zfill(3)+".png"
             elif self.dataset == "OWSC":
                 data_path = j
             else:
@@ -150,6 +152,8 @@ def load_class_data(i, dataset, datadir, flag, Config):
             data_path = datadir+str(i+1)+"/"+str(j)+".jpg"
         elif dataset == "MNet40":
             data_path = datadir+str(i+1)+"/"+str(j).zfill(3)+".jpg"
+        elif dataset == "FG3D":
+            data_path = datadir+str(i+1)+"/"+str(j).zfill(3)+".png"
         elif dataset == "OWSC":
             data_path = j
         else:
@@ -162,7 +166,7 @@ def load_class_data(i, dataset, datadir, flag, Config):
                                        transforms.ToTensor(),
                                        transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
                                   ])
-            elif dataset == "MNet40" or dataset == "OWSC":
+            elif dataset == "MNet40" or dataset == "FG3D" or dataset == "OWSC":
                 timg = transforms.Compose([
                                        transforms.Resize(Config.imgDim),
                                        transforms.ToTensor(),
