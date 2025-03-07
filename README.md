@@ -60,7 +60,11 @@ python evaluate_OWSC.py piprx model_weights/OWSC/PIE2019/PIPRX_1.0_1.0_1.0_1_150
 python evaluate_OWSC.py pitc model_weights/OWSC/PIE2019/PITC_1.0_0.2_1.0_1_150.pth 1 1
 ```
 ## Ablation for our Curriculum Learning Approach: 
-For Random Sampling from Same Category using PiRO's architecture (with nHeads = 1, nLayers = 1)
+For this ablation, we compare performance of the same dual-encoder model with same number of self-attention layer and heads trained using different object pair sampling strategies:
+- Randomly sampling object pairs from the same category (models named as RAND_CATG)
+- Mining object pairs based on our Curriculum Learning approach (models named as CURRICULUM)
+
+For Random Sampling from Same Category using PiRO's dual-encoder architecture (with nHeads = 1, nLayers = 1)
 ```bash
 python evaluate_curriculum.py OWSC model_weights/OWSC/PiRO2024/PiRO_RAND_CATG_nH1_nL1.pth 1 1
 ```
@@ -91,14 +95,16 @@ python evaluate_curriculum.py FG3D model_weights/FG3D/CURRICULUM_FG3D_nH1_nL1.pt
 ```
 
 ## Ablation for Architecture: 
-For Curriculum Learning using nHeads = 1, nLayers = 1
+For this ablation, we compare performance of models with different number of self-attention layers trained using the same curriculum learning approach. 
+
+For model with self-attention nHeads = 1 and nLayers = 1 trained using curriculum learning on our OWSC dataset: 
 ```bash
 python evaluate_OWSC.py ours model_weights/OWSC/PiRO2024/PiRO_CURRICULUM_nH1_nL1.pth 1 1
 ```
 <img width="649" alt="Pasted Graphic" src="https://github.com/user-attachments/assets/89859ae1-e180-4b72-ba7a-db327970ce62" />
 
 
-For Curriculum Learning using nHeads = 1, nLayers = 2
+For model with self-attention nHeads = 1 and nLayers = 2 trained using curriculum learning on our OWSC dataset: 
 ```bash
 python evaluate_OWSC.py ours model_weights/OWSC/PiRO2024/Ours_PIRO_CURRICULUM_nH1_nL2.pth 1 2
 ```
@@ -106,7 +112,7 @@ python evaluate_OWSC.py ours model_weights/OWSC/PiRO2024/Ours_PIRO_CURRICULUM_nH
 
 
 ## Citation 
-If you use the dataset in your work, please cite our [paper](https://arxiv.org/abs/2404.06470): 
+If you use the dataset or curriculum learning approach in your work, please cite our [paper](https://arxiv.org/abs/2404.06470): 
 ```
 @misc{sarkar2025datasetframeworklearningstateinvariant,
       title={A Dataset and Framework for Learning State-invariant Object Representations}, 
