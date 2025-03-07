@@ -46,7 +46,8 @@ For Our method:
 ```bash
 python evaluate_OWSC.py ours model_weights/OWSC/PiRO2024/Ours_PiRO_CURRICULUM_nH1_nL2_2.pth 1 2
 ```
-<img width="652" alt="Ours_result" src="https://github.com/user-attachments/assets/31b1933e-a4b5-4eb8-8c2b-6bf20d2c4a2b" />
+
+<img width="652" alt="Ours_result" src="https://github.com/user-attachments/assets/ecd1b61a-f5d3-412a-8cf3-69e32643d37a" />
 
 
 For PiRO method:
