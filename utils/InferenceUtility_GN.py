@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Functions for inference on State-invariant Classification and Retrieval 
-category and object-level tasks for the ObjectsWithStateChange (OWSC) SI dataset
+category and object-level tasks for the ObjectsWithStateChange (OWSC) GN dataset
 """
 import torch.multiprocessing
 torch.multiprocessing.set_sharing_strategy('file_system')
@@ -60,7 +60,8 @@ def NNC_OWSC_SV(refC_emb, refO_emb, testC_emb, testO_emb, Config):
     """=====================================================================
                                 SV Object Retrieval
        ====================================================================="""
-    OR_KNN = FaissKNeighbors(XOTrain.shape[0])
+    #OR_KNN = FaissKNeighbors(XOTrain.shape[0])
+    OR_KNN = FaissKNeighbors(Config.Ntrain)
     OR_KNN.fit(np.array(XOTrain), np.array(oTrain))
     objranks = OR_KNN.neighbors(np.array(XOTest))
     obj_mAP = calculate_mAP(objranks, oTest)
@@ -82,21 +83,20 @@ def NNC_OWSC_SV(refC_emb, refO_emb, testC_emb, testO_emb, Config):
     """=====================================================================
                                 SV Category Recognition
        ====================================================================="""
-    CLS_KNN = FaissKNeighbors(10) 
+    CLS_KNN = FaissKNeighbors(1) 
     CLS_KNN.fit(np.array(XCTrain), np.array(cTrain))
     cls_predict = CLS_KNN.predict(np.array(XCTest))
-    
     for t in range(0,len(cTest)):
         if cls_predict[t]==cTest[t]:
             cacc += 1
-    print("SV Category Recognition: ", cacc/len(cTest))
         
     del CLS_KNN
     del cls_predict
     """=====================================================================
                                 SV Category Retrieval
        ====================================================================="""
-    CR_KNN = FaissKNeighbors(XCTrain.shape[0])
+    #CR_KNN = FaissKNeighbors(XCTrain.shape[0])
+    CR_KNN = FaissKNeighbors(Config.Ntrain)
     CR_KNN.fit(np.array(XCTrain), np.array(cTrain))
     crranks = CR_KNN.neighbors(np.array(XCTest))
     cr_mAP = calculate_mAP(crranks, cTest)
@@ -130,7 +130,7 @@ def NNC_OWSC_MV(refC_emb, refO_emb, testC_emb, testO_emb, Config):
     """=====================================================================
                                 MV Category Retrieval
        ====================================================================="""
-    CR_KNN = FaissKNeighbors(Config.Ntest)
+    CR_KNN = FaissKNeighbors(Config.Ntrain)
     CR_KNN.fit(np.array(XCTrain), np.array(cTrain))
     crranks = CR_KNN.neighbors(np.array(XCTest))
     cr_mAP = calculate_mAP(crranks, cTest)
@@ -143,14 +143,13 @@ def NNC_OWSC_MV(refC_emb, refO_emb, testC_emb, testO_emb, Config):
     """=====================================================================
                                 MV Category Recognition
        ====================================================================="""
-    CLS_KNN = FaissKNeighbors(5) 
+    CLS_KNN = FaissKNeighbors(1) 
     CLS_KNN.fit(np.array(XCTrain), np.array(cTrain))
     cls_predict = CLS_KNN.predict(np.array(XCTest))
-    
+    mispred_list = []
     for t in range(0,len(cTest)):
         if cls_predict[t]==cTest[t]:
-            cacc += 1
-            
+            cacc += 1      
     print("MV Category Recognition Accuracy: ", cacc/len(cTest))
         
     del CLS_KNN
@@ -162,7 +161,7 @@ def NNC_OWSC_MV(refC_emb, refO_emb, testC_emb, testO_emb, Config):
     """=====================================================================
                                 MV Object Retrieval
        ====================================================================="""
-    OR_KNN = FaissKNeighbors(Config.Ntest)
+    OR_KNN = FaissKNeighbors(Config.Ntrain)
     OR_KNN.fit(np.array(XOTrain), np.array(oTrain))
     orranks = OR_KNN.neighbors(np.array(XOTest))
     or_mAP = calculate_mAP(orranks, oTest)
@@ -197,6 +196,50 @@ Evaluate State-invariant category and object-level classification and retrieval
                 performance for Single embedding space methods
 ===============================================================================
 """
+def evaluate_SI_performance_unseen(dataset, Config, trcv_model, nview):
+    ref_OE={}
+    ref_CE={}
+    ref_mv_CE={}
+    test_mv_CE={}
+    test_OE={}
+    test_CE={}
+    label_cls = {}
+    label_obj = {}
+    ref_mv_OE = {}
+    test_mv_OE = {}
+    label_mv_OE = {}
+    """
+    Load the Single Pose-invariant embedding space model and 
+    extract the gallery (train) embeddings and probe (test) embeddings
+    """
+    trainData = loadDataset(Config, 'train', dataset)
+    trainLoader = DataLoader(trainData,shuffle=False,num_workers=8,batch_size=1)
+    trcv_model.eval()
+    with torch.no_grad():    
+        for i, (ref_data, obj_labels, cls_labels) in enumerate(tqdm(trainLoader)): 
+            rOE, mvrOE, _ = trcv_model(ref_data.cuda())
+            ref_OE[i]=rOE.squeeze().detach().cpu().numpy()
+            ref_CE[i]=rOE.squeeze().detach().cpu().numpy()
+            ref_mv_CE[i]=mvrOE.detach().cpu().numpy()
+            ref_mv_OE[i]=mvrOE.detach().cpu().numpy()
+    del trainData
+    del trainLoader
+    testData = loadDataset(Config, 'test', dataset)
+    testLoader = DataLoader(testData,shuffle=False,num_workers=8,batch_size=1)
+    with torch.no_grad():
+        for j, (test_data, obj_labels, cls_labels) in enumerate(tqdm(testLoader)): 
+            tOE, mvtOE,_ = trcv_model(test_data.cuda())
+            test_OE[j]=tOE.squeeze().detach().cpu().numpy()                
+            test_CE[j]=tOE.squeeze().detach().cpu().numpy()
+            label_obj[j]= obj_labels
+            test_mv_CE[j]=mvtOE.detach().cpu().numpy()
+            test_mv_OE[j]=mvtOE.detach().cpu().numpy()
+            label_mv_OE[j]=j
+    """ Compute performance from single-image query """      
+    SV_C_mAP, SV_C_acc, SV_O_mAP, SV_O_acc  = NNC_OWSC_SV(list(ref_CE.values()), list(ref_OE.values()), list(test_CE.values()), list(test_OE.values()), Config) 
+    """ Compute performance from multi-image query """
+    MV_C_mAP, MV_C_acc, MV_O_mAP, MV_O_acc  = NNC_OWSC_MV(list(ref_mv_CE.values()), list(ref_mv_OE.values()), list(test_mv_CE.values()), list(test_mv_OE.values()), Config) 
+    return SV_C_mAP, SV_C_acc, SV_O_mAP, SV_O_acc, MV_C_mAP, MV_C_acc, MV_O_mAP, MV_O_acc
 
 def evaluate_SI_performance_single(dataset, Config, trcv_model, nview):
     ref_OE={}
@@ -290,7 +333,7 @@ def evaluate_SI_performance_dual(dataset, Config, trcv_model, nview):
                 test_mv_OE[j]=mvtOE.detach().cpu().numpy()
                 label_mv_OE[j]=j
     """ Compute performance from single-image query """
-    SV_C_mAP, SV_C_acc, SV_O_mAP, SV_O_acc  = NNC_OWSC_SV(list(ref_CE.values()), list(ref_OE.values()), list(test_CE.values()), list(test_OE.values()), Config) 
+    SV_C_mAP, SV_C_acc, SV_O_mAP, SV_O_acc  = NNC_OWSC_SV(list(ref_OE.values()), list(ref_OE.values()), list(test_OE.values()), list(test_OE.values()), Config) 
     """ Compute performance from multi-image query """
-    MV_C_mAP, MV_C_acc, MV_O_mAP, MV_O_acc  = NNC_OWSC_MV(list(ref_mv_CE.values()), list(ref_mv_OE.values()), list(test_mv_CE.values()), list(test_mv_OE.values()), Config) 
+    MV_C_mAP, MV_C_acc, MV_O_mAP, MV_O_acc  = NNC_OWSC_MV(list(ref_mv_OE.values()), list(ref_mv_OE.values()), list(test_mv_OE.values()), list(test_mv_OE.values()), Config) 
     return SV_C_mAP, SV_C_acc, SV_O_mAP, SV_O_acc, MV_C_mAP, MV_C_acc, MV_O_mAP, MV_O_acc

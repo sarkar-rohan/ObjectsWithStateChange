@@ -4,7 +4,7 @@
 ===============================================================================
 Code for evaluating trained models on single and multi-image 
 pose or state-invariant classification and retrieval tasks
-on ObjectsWithStateChange (OWSC), ModelNet-40, and ObjectPoseInvariance (OOWL) 
+on ObjectsWithStateChange (OWSC SI), ModelNet-40, and ObjectPoseInvariance (OOWL) 
 datasets.
 ===============================================================================
 """
@@ -20,7 +20,7 @@ print(torch.__version__)
 from utils.InferenceUtility_SI import evaluate_SI_performance_dual
 from utils.InferenceUtility_PI import evaluate_PI_performance_dual
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
-from ConfigLearn import ConfigOOWL, ConfigMNet40, ConfigOWSC, ConfigFG3D, HyperParams
+from ConfigLearn import ConfigOOWL, ConfigMNet40, ConfigOWSC_SI, ConfigFG3D, HyperParams
 from models.VGG_PAN_DualEmb import DualModel
 
 """
@@ -40,7 +40,7 @@ if dataset == 'OOWL':
 elif dataset == 'MNet40':
     Config = ConfigMNet40(hp.case, hp.embDim, hp.batchSize, hp.alpha, hp.n_randsamp_class, hp.seed_inp)
 elif dataset == 'OWSC':
-    Config = ConfigOWSC(hp.case, hp.embDim, hp.batchSize, hp.alpha, hp.n_randsamp_class, hp.seed_inp)
+    Config = ConfigOWSC_SI(hp.case, hp.embDim, hp.batchSize, hp.alpha, hp.n_randsamp_class, hp.seed_inp)
 elif dataset == 'FG3D':
     Config = ConfigFG3D(hp.case, hp.embDim, hp.batchSize, hp.alpha, hp.n_randsamp_class, hp.seed_inp)
 else:
@@ -71,10 +71,12 @@ print("Loaded model weights")
 
 print("-------------------------------------------------------------------")    
 print("Test Results: \n")   
-print("-------------------------- Single-View ----------------------------")
-print("SV Classification Accuracy: Category {} % | Object {} %|\n".format(SV_C_acc, SV_O_acc))  
-print("SV  Retrieval mAP: Category {} %| Object {} %|\n".format(SV_C_mAP, SV_O_mAP))
-print("-------------------------- Multi-View ----------------------------")    
-print("MV Classification Accuracy: Category {} %| Object {} %| ".format(MV_C_acc, MV_O_acc))  
-print("MV Retrieval mAP: Category {} %| Object {} %| ".format(MV_C_mAP, MV_O_mAP))
+print("-------------------------- Classification (Accuracy) ----------------------------")
+print("SV Category {} % | MV Category {} %|\n".format(SV_C_acc, MV_C_acc))  
+print("SV Object {} %| MV Object {} %| ".format(SV_O_acc, MV_O_acc)) 
+print("Average Classification {} %| ".format((SV_C_acc+MV_C_acc+SV_O_acc+MV_O_acc)/4)) 
+print("-------------------------- Retrieval (mAP) ----------------------------")    
+print("SV Category {} %| MV Category {} %|\n".format(SV_C_mAP, MV_C_mAP))
+print("SV Object {} %| MV Object {} %| ".format(SV_O_mAP, MV_O_mAP))
+print("Average retrieval {} %| ".format((SV_C_mAP+MV_C_mAP+SV_O_mAP+MV_O_mAP)/4))
 print("-------------------------------------------------------------------") 

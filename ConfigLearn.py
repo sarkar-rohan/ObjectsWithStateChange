@@ -47,12 +47,12 @@ class HyperParams():
         self.task = 'JNT' # change to JNT
         self.ecc_ratio = 3.0 # Early Convergence Ratio
 
-class ConfigOWSC():
+class ConfigOWSC_SI():
     def __init__(self, case, edim, bs, a, n_s, seed_no):
-        super(ConfigOWSC, self).__init__()
+        super(ConfigOWSC_SI, self).__init__()
         random.seed(seed_no)
-        self.root_path = "data/OWSC/" 
-        self.save_path = "results/OWSC/"
+        self.root_path = "data/OWSC/SI/" 
+        self.save_path = "results/OWSC/SI/"
         self.case = case
         self.data_dir = self.root_path
         self.gallery_dir = self.data_dir+"train/"
@@ -102,6 +102,66 @@ class ConfigOWSC():
         self.probe_vp = np.load(self.probe_dir+'test_o2views.npy', allow_pickle=True).item()
         self.N_G = n_s 
         print(self.N_G)
+
+class ConfigOWSC_GN():
+    def __init__(self, case, edim, bs, a, n_s, seed_no):
+        super(ConfigOWSC_GN, self).__init__()
+        random.seed(seed_no)
+        self.root_path = "data/OWSC/GN/" 
+        self.save_path = "results/OWSC/GN/"
+        self.case = case
+        self.data_dir = self.root_path
+        self.gallery_dir = self.data_dir+"gallery/"
+        self.probe_dir = self.data_dir+"probe/"
+        self.save_model_path = self.save_path+'models/OWSC_'+str(a)+'_case'+str(case)+'_b'+str(bs)+str(edim)
+        self.best_model_path = self.save_path+'models/OWSC_Best'+str(a)+'_case'+str(case)+'_b'+str(bs)+str(edim)
+        self.save_result_path = self.save_path+str(bs)+'_OWSCbenchmark.csv'    
+        self.save_plot_dist_path = self.save_path+str(bs)+'_OWSCdistance_curr.png'
+        self.save_plot_learn_path = self.save_path+str(bs)+'_OWSClearn_curr.png'
+        self.BS = bs
+        self.Nepochs = 150
+        self.Ncls = 21
+        self.Niter = 1
+        self.Ntrain = 75
+        self.Ntest = 75
+        self.part_const = 2
+        self.o2ctrain = np.load(self.gallery_dir+'gallery_o2c.npy')
+        self.o2ctest = np.load(self.probe_dir+'probe_o2c.npy')
+        print("O2CTrain", self.o2ctrain)
+        print("O2CTest", self.o2ctest)
+        clist = []
+        for c in range(self.Ncls):
+            clist.append([])
+        for i, x in enumerate(self.o2ctrain):
+            temp = clist[x]
+            temp.append(i)
+            clist[x] = temp   
+        self.class_list = clist
+        print(clist)
+        self.LR = 0.00005 
+        self.alpha = a
+        self.inpChannel = 3
+        self.imgDim = 224
+        self.embedDim = edim
+        self.vData = False
+        self.Ncomp = 3 
+        self.gal_vp = []
+        self.probe_vp = []
+        self.train_dataAug = transforms.Compose([ 
+                                  transforms.Resize((self.imgDim,self.imgDim)),
+                                  transforms.RandomHorizontalFlip(),
+                                  transforms.RandomAffine(5, translate=None, scale=(0.9,1.1), shear=[-1,1,-1,1], resample=False, fillcolor=0),
+                                  transforms.ToTensor(),
+                                  transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+                                 ])
+        self.gal_vp = np.load(self.gallery_dir+'gallery_o2views.npy', allow_pickle=True).item()
+        self.probe_vp = np.load(self.probe_dir+'probe_o2views.npy', allow_pickle=True).item()
+        self.N_G = n_s 
+        print(self.N_G)
+
+
+
+
 
 
 class ConfigOOWL():
