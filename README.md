@@ -1,11 +1,10 @@
-# A Dataset and Framework for Learning State-invariant Object Representations 
-(WACV 2026)
+# A Dataset and Framework for Learning State-invariant Object Representations (WACV 2026)
 
 ## ObjectsWithStateChange (OWSC) Dataset 
 We introduce a new dataset of 406 household objects from 21 categories, undergoing diverse state changes in addition to other transformations such as pose and viewpoint changes. 
 The goal of introducing this dataset is to facilitate research in learning object representations that are invariant to state changes while also staying invariant to transformations induced by changes in viewpoint, pose, illumination, etc., for fine-grained recognition and retrieval. 
 
-<img width="950" height="540" alt="OWSC_thumbnail copy" src="https://github.com/user-attachments/assets/3b5a7c2f-e488-423e-96d9-0e50708452af" />
+<img width="640" height="480" alt="OWSC_thumbnail copy" src="https://github.com/user-attachments/assets/3b5a7c2f-e488-423e-96d9-0e50708452af" />
 
 
 The OWSC dataset comprises 13837 images of 406 household objects from 21 categories, captured using smartphone cameras under various state changes from arbitrary viewpoints. 
@@ -17,7 +16,7 @@ This split is to evaluate invariance across different states and other transform
 - Test Set of 3,428 images (≈ 10 per object).
 - Train Set of 7,900 images (≈ 24 per object) with no overlap between the two partitions. 
 
-<img width="960" height="540" alt="OWSC-SI" src="https://github.com/user-attachments/assets/17ef86db-4711-4697-a2a8-378f8ad7ab7d" />
+<img width="640" height="480" alt="OWSC-SI" src="https://github.com/user-attachments/assets/17ef86db-4711-4697-a2a8-378f8ad7ab7d" />
 
 ### OWSC-GN for generalization to novel objects:
 
@@ -27,7 +26,7 @@ This split is to test generalization to novel objects. It comprises 2509 images 
 
 This split is to evaluate the recognition and retrieval of novel objects amidst state variations and other  transformations by correctly matching the probe images of the objects with their gallery images. 
 
-<img width="960" height="540" alt="OWSCGN" src="https://github.com/user-attachments/assets/fa3c3f58-4d35-46b4-931f-81265307ea06" />
+<img width="640" height="480" alt="OWSCGN" src="https://github.com/user-attachments/assets/fa3c3f58-4d35-46b4-931f-81265307ea06" />
 
 
 
@@ -36,7 +35,9 @@ The mapping of object-identities to categories (also indicated by an integer ID)
 
 The text descriptions of the visual characteristics of the objects will be released soon. 
 
-The dataset can be downloaded from [Google Drive](https://drive.google.com/drive/folders/19icj12ccxArA7vpiuk-VT8fy5g-6S9Tu?usp=sharing).
+The dataset can be downloaded from [Google Drive](https://drive.google.com/drive/folders/10YH6n6UfXCDRYJQbJ5lt8kciS4fuODyz?usp=sharing).
+
+
 
 ## Evaluation
 ### Requirements and Setup
@@ -54,9 +55,9 @@ unzip data.zip
 We have organized these datasets such that the multi-view images of each object identity are stored in a separate subfolder with an integer ID indicating the object-identity. 
 The train and test splits for the above-mentioned datasets can be downloaded from the link provided above.
 The mapping of object-identities to categories is also provided as `train_o2c.npy` and `test_o2c.npy` files.
-
+https://drive.google.com/file/d/12TE9yvSmP1oEclhWYLeU8fcKjiIVvPsd/view?usp=sharing
 ### Downloading our trained models
-Download the model weights from [Google Drive](https://drive.google.com/drive/folders/1dpzTXwZZHAQH7b0H3ovJPbKtIiggBO-K?usp=drive_link)
+Download the model weights from [Google Drive](https://drive.google.com/file/d/12TE9yvSmP1oEclhWYLeU8fcKjiIVvPsd/view?usp=sharing)
 and place them in a folder named model_weights 
 
 ## Benchmarking different methods using our dataset: 
