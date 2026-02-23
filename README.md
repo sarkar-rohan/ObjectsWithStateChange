@@ -46,7 +46,7 @@ Please clone this repo and install the dependencies using:
 conda env create -f environment_owsc.yml
 ```
 ### Downloading datasets
-Download the datasets (OWSC, ObjectPI, ModelNet-40, and FG3D) from [Google Drive](https://drive.google.com/file/d/1r_WKcmkemumC79VglA8LVgUTZ9J69d9L/view?usp=drive_link)
+Download the datasets (OWSC, ObjectPI [1], ModelNet-40 [2], and FG3D [3]) from [Google Drive](https://drive.google.com/file/d/1r_WKcmkemumC79VglA8LVgUTZ9J69d9L/view?usp=drive_link)
 
 Please unzip the data.zip file using and place the datasets in a folder named data
 ```bash
@@ -137,6 +137,10 @@ python evaluate_OWSC.py ours model_weights/OWSC/PiRO2024/Ours_PIRO_CURRICULUM_nH
 ```
 <img width="653" alt="Ification Accuracy Category 89 206" src="https://github.com/user-attachments/assets/d6045967-e006-4ace-8f30-cf7f2aeb387b" />
 
+## References
+[1] Chih-Hui Ho, Pedro Morgado, Amir Persekian, and Nuno Vasconcelos. PIEs: Pose invariant embeddings. In Computer Vision and Pattern Recognition (CVPR), 2019.  
+[2] Zhirong Wu, S. Song, A. Khosla, Fisher Yu, Linguang Zhang, Xiaoou Tang, and J. Xiao. 3D shapenets: A deep representation for volumetric shapes. In Computer Vision and Pattern Recognition (CVPR), pages 1912–1920, Los Alamitos, CA, USA, 2015.  
+[3] Xinhai Liu, Zhizhong Han, Yu-Shen Liu, and Matthias Zwicker. Fine-grained 3D shape classification with hierarchical part-view attentions. IEEE Transactions on Image Processing, 2021.  
 
 ## Citation 
 If you use the dataset or curriculum learning approach in your work, please cite our [paper](https://arxiv.org/abs/2404.06470): 
