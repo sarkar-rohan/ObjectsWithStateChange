@@ -38,7 +38,6 @@ The text descriptions of the visual characteristics of the objects will be relea
 The dataset can be downloaded from [Google Drive](https://drive.google.com/drive/folders/10YH6n6UfXCDRYJQbJ5lt8kciS4fuODyz?usp=sharing).
 
 
-
 ## Evaluation
 ### Requirements and Setup
 Please clone this repo and install the dependencies using:
@@ -46,7 +45,7 @@ Please clone this repo and install the dependencies using:
 conda env create -f environment_owsc.yml
 ```
 ### Downloading datasets
-Download the datasets (OWSC, ObjectPI [1], ModelNet-40 [2], and FG3D [3]) from [Google Drive](https://drive.google.com/file/d/1r_WKcmkemumC79VglA8LVgUTZ9J69d9L/view?usp=drive_link)
+Download the datasets (OWSC, ObjectPI [1], ModelNet-40 [2], and FG3D [3]) from [Google Drive](https://drive.google.com/file/d/12TE9yvSmP1oEclhWYLeU8fcKjiIVvPsd/view?usp=drive_link)
 
 Please unzip the data.zip file using and place the datasets in a folder named data
 ```bash
@@ -57,7 +56,7 @@ The train and test splits for the above-mentioned datasets can be downloaded fro
 The mapping of object-identities to categories is also provided as `train_o2c.npy` and `test_o2c.npy` files.
 https://drive.google.com/file/d/12TE9yvSmP1oEclhWYLeU8fcKjiIVvPsd/view?usp=sharing
 ### Downloading our trained models
-Download the model weights from [Google Drive](https://drive.google.com/file/d/12TE9yvSmP1oEclhWYLeU8fcKjiIVvPsd/view?usp=sharing)
+Download the model weights from [Google Drive](https://drive.google.com/drive/folders/1dpzTXwZZHAQH7b0H3ovJPbKtIiggBO-K?usp=drive_link)
 and place them in a folder named model_weights 
 
 ## Benchmarking different methods using our dataset: 
