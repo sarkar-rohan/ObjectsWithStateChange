@@ -54,7 +54,7 @@ unzip data.zip
 We have organized these datasets such that the multi-view images of each object identity are stored in a separate subfolder with an integer ID indicating the object-identity. 
 The train and test splits for the above-mentioned datasets can be downloaded from the link provided above.
 The mapping of object-identities to categories is also provided as `train_o2c.npy` and `test_o2c.npy` files.
-https://drive.google.com/file/d/12TE9yvSmP1oEclhWYLeU8fcKjiIVvPsd/view?usp=sharing
+
 ### Downloading our trained models
 Download the model weights from [Google Drive](https://drive.google.com/drive/folders/1dpzTXwZZHAQH7b0H3ovJPbKtIiggBO-K?usp=drive_link)
 and place them in a folder named model_weights 
