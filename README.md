@@ -1,19 +1,40 @@
-# ObjectsWithStateChange (OWSC) Dataset 
+# A Dataset and Framework for Learning State-invariant Object Representations 
+(WACV 2026)
 
-## Dataset
-We introduce a new dataset comprising 331 household objects from 21 categories undergoing diverse state changes in addition to other transformations such as pose and viewpoint changes. 
-The goal of introducing this dataset is to facilitate research in learning object representations that are invariant to state changes while also staying invariant to transformations induced by changes in viewpoint, pose, illumination, etc. for fine-grained recognition and retrieval. 
+## ObjectsWithStateChange (OWSC) Dataset 
+We introduce a new dataset of 406 household objects from 21 categories, undergoing diverse state changes in addition to other transformations such as pose and viewpoint changes. 
+The goal of introducing this dataset is to facilitate research in learning object representations that are invariant to state changes while also staying invariant to transformations induced by changes in viewpoint, pose, illumination, etc., for fine-grained recognition and retrieval. 
 
-<img width="1248" alt="Data_FG" src="https://github.com/user-attachments/assets/d6b56614-c68f-459e-956b-7a6301d15378">
+<img width="950" height="540" alt="OWSC_thumbnail copy" src="https://github.com/user-attachments/assets/3b5a7c2f-e488-423e-96d9-0e50708452af" />
 
-The OWSC dataset comprises 11328 images of 331 household objects from 21 categories, captured using smartphone cameras under various state changes from arbitrary viewpoints. 
-The dataset is split into two partitions such that the training split consists of 7900 images, with approximately 24 images per object, while the test split comprises 3428 images, with approximately 10 images per object. More details are provided in the paper: https://arxiv.org/abs/2404.06470 
 
-<img width="800" alt="DataSplits" src="https://github.com/user-attachments/assets/e07fdc75-6d08-4246-8c9e-3b81a880c9c7">
+The OWSC dataset comprises 13837 images of 406 household objects from 21 categories, captured using smartphone cameras under various state changes from arbitrary viewpoints. 
+The dataset is divided into two splits: 
+
+### OWSC-SI for state invariance:
+
+This split is to evaluate invariance across different states and other transformations. It comprises 11328 images of 331 objects, randomly partitioned into: 
+- Test Set of 3,428 images (≈ 10 per object).
+- Train Set of 7,900 images (≈ 24 per object) with no overlap between the two partitions. 
+
+<img width="960" height="540" alt="OWSC-SI" src="https://github.com/user-attachments/assets/17ef86db-4711-4697-a2a8-378f8ad7ab7d" />
+
+### OWSC-GN for generalization to novel objects:
+
+This split is to test generalization to novel objects. It comprises 2509 images of 75 unseen objects (not present in OWSC-SI), randomly partitioned into: 
+- Gallery Set: Images of one state per object
+- Probe Set: Images from the remaining states per object, with no overlap between the two partitions. 
+
+This split is to evaluate the recognition and retrieval of novel objects amidst state variations and other  transformations by correctly matching the probe images of the objects with their gallery images. 
+
+<img width="960" height="540" alt="OWSCGN" src="https://github.com/user-attachments/assets/fa3c3f58-4d35-46b4-931f-81265307ea06" />
+
+
 
 The datasets are organized such that the images of each object identity are stored in a separate subfolder with an integer ID indicating the object-identity. 
-The mapping of object-identities to categories (also indicated by an integer ID) are also provided as a `obj2cat.npy` file. 
-The text descriptions describing the visual characteristics of the objects will be released soon. 
+The mapping of object-identities to categories (also indicated by an integer ID) are also provided as a `split_o2c.npy` file. 
+
+The text descriptions of the visual characteristics of the objects will be released soon. 
 
 The dataset can be downloaded from [Google Drive](https://drive.google.com/drive/folders/19icj12ccxArA7vpiuk-VT8fy5g-6S9Tu?usp=sharing).
 
