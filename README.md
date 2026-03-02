@@ -2,7 +2,8 @@
 
 ## ObjectsWithStateChange (OWSC) Dataset 
 We introduce a new dataset of 406 household objects from 21 categories, undergoing diverse state changes in addition to other transformations such as pose and viewpoint changes. 
-The goal of introducing this dataset is to facilitate research in learning object representations that are invariant to state changes while also staying invariant to transformations induced by changes in viewpoint, pose, illumination, etc., for fine-grained recognition and retrieval. 
+The goal of introducing this dataset is to facilitate research in learning object representations that are invariant to state changes while also staying invariant to transformations induced by changes in viewpoint, pose, illumination, etc., for fine-grained recognition and retrieval. Details of our dataset are provided in our [paper](https://openaccess.thecvf.com/content/WACV2026/papers/Sarkar_A_Dataset_and_Framework_for_Learning_State-invariant_Object_Representations_WACV_2026_paper.pdf).
+
 
 <img width="640" height="480" alt="OWSC_thumbnail copy" src="https://github.com/user-attachments/assets/3b5a7c2f-e488-423e-96d9-0e50708452af" />
 
@@ -163,17 +164,17 @@ python evaluate_OWSC_SI.py ours model_weights/OWSC/PiRO2024/Ours_OWSCSI_CURRICUL
 [1] Chih-Hui Ho, Pedro Morgado, Amir Persekian, and Nuno Vasconcelos. PIEs: Pose invariant embeddings. In Computer Vision and Pattern Recognition (CVPR), 2019.  
 [2] Zhirong Wu, S. Song, A. Khosla, Fisher Yu, Linguang Zhang, Xiaoou Tang, and J. Xiao. 3D shapenets: A deep representation for volumetric shapes. In Computer Vision and Pattern Recognition (CVPR), pages 1912–1920, Los Alamitos, CA, USA, 2015.  
 [3] Xinhai Liu, Zhizhong Han, Yu-Shen Liu, and Matthias Zwicker. Fine-grained 3D shape classification with hierarchical part-view attentions. IEEE Transactions on Image Processing, 2021.  
+[4] Rohan Sarkar, Avinash Kak; Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2024, pp. 17077-17085
 
 ## Citation 
-If you use the dataset or curriculum learning approach in your work, please cite our [paper](https://arxiv.org/abs/2404.06470): 
+If you use the dataset or curriculum learning approach in your work, please cite our [paper](https://openaccess.thecvf.com/content/WACV2026/html/Sarkar_A_Dataset_and_Framework_for_Learning_State-invariant_Object_Representations_WACV_2026_paper.html): 
 ```
-@misc{sarkar2025datasetframeworklearningstateinvariant,
-      title={A Dataset and Framework for Learning State-invariant Object Representations}, 
-      author={Rohan Sarkar and Avinash Kak},
-      year={2025},
-      eprint={2404.06470},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2404.06470}, 
+@InProceedings{Sarkar_2026_WACV,
+    author    = {Sarkar, Rohan and Kak, Avinash},
+    title     = {A Dataset and Framework for Learning State-invariant Object Representations},
+    booktitle = {Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)},
+    month     = {March},
+    year      = {2026},
+    pages     = {4715-4723}
 }
 ```
