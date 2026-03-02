@@ -2,7 +2,7 @@
 
 ## ObjectsWithStateChange (OWSC) Dataset 
 We introduce a new dataset of 406 household objects from 21 categories, undergoing diverse state changes in addition to other transformations such as pose and viewpoint changes. 
-The goal of introducing this dataset is to facilitate research in learning object representations that are invariant to state changes while also staying invariant to transformations induced by changes in viewpoint, pose, illumination, etc., for fine-grained recognition and retrieval. Details of our dataset are provided in our [paper](https://openaccess.thecvf.com/content/WACV2026/papers/Sarkar_A_Dataset_and_Framework_for_Learning_State-invariant_Object_Representations_WACV_2026_paper.pdf).
+The goal of introducing this dataset is to facilitate research in learning object representations that are invariant to state changes while also staying invariant to transformations induced by changes in viewpoint, pose, illumination, etc., for fine-grained recognition and retrieval. Details of the dataset are provided in our [paper](https://openaccess.thecvf.com/content/WACV2026/papers/Sarkar_A_Dataset_and_Framework_for_Learning_State-invariant_Object_Representations_WACV_2026_paper.pdf).
 
 
 <img width="640" height="480" alt="OWSC_thumbnail copy" src="https://github.com/user-attachments/assets/3b5a7c2f-e488-423e-96d9-0e50708452af" />
